@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getSetting } from '../db/database.js'
 import { useApp } from '../context/AppContext.jsx'
-import { Pill, Lock, User, Eye, EyeOff, Info, ShieldCheck } from 'lucide-react'
+import { Pill, Lock, User, Eye, EyeOff, ShieldCheck } from 'lucide-react'
 
 export default function Login() {
   const { t } = useTranslation()
@@ -122,25 +122,14 @@ export default function Login() {
             </button>
           </form>
 
-          {admin && (
-            <div className="mt-6 p-4 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
-              <div className="flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0">
-                  <Info size={16} className="text-blue-600"/>
-                </div>
-                <div className="text-xs">
-                  <div className="font-bold text-blue-900 mb-1 flex items-center gap-1.5">
-                    <ShieldCheck size={13}/> Default Admin Credentials
-                  </div>
-                  <div className="text-blue-700 space-y-0.5">
-                    <div>Username: <code className="font-bold bg-white px-1.5 py-0.5 rounded">{admin.username}</code></div>
-                    <div>Password: <code className="font-bold bg-white px-1.5 py-0.5 rounded">{admin.password}</code></div>
-                  </div>
-                  <div className="text-blue-600/80 mt-2">You can change these in Settings → Admin Profile</div>
-                </div>
-              </div>
+          <div className="mt-6 p-4 rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-brand-500/10 flex items-center justify-center shrink-0">
+              <ShieldCheck size={16} className="text-brand-600"/>
             </div>
-          )}
+            <div className="text-xs text-slate-600">
+              Trouble signing in? Contact your pharmacy administrator or reset credentials from the admin panel.
+            </div>
+          </div>
         </div>
       </div>
 
