@@ -23,6 +23,10 @@ db.version(2).stores({
   employees: '++id, name, phone, email, role, cnic, salary, joinDate, branchId'
 })
 
+db.version(3).stores({
+  shifts: '++id, openedAt, closedAt, openedBy, openingCash, closingCash, expectedCash, variance, branchId, status, note'
+})
+
 // Seed defaults
 export async function seedDefaults() {
   // Ensure admin setting always exists (for upgrades)

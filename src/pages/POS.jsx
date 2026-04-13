@@ -145,7 +145,13 @@ export default function POS() {
               autoFocus
               value={query}
               onChange={e => setQuery(e.target.value)}
-              placeholder={t('pos.searchMedicine')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && results.length > 0) {
+                  e.preventDefault()
+                  addToCart(results[0])
+                }
+              }}
+              placeholder={t('pos.searchMedicine') + ' (scan barcode or press Enter)'}
               className="input pl-11 text-base"
             />
           </div>

@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
   LayoutDashboard, ShoppingCart, Package, Receipt,
-  Users, Truck, BarChart3, Settings, Pill, Sparkles, UserCog, Lock
+  Users, Truck, BarChart3, Settings, Pill, Sparkles, UserCog, Lock, DollarSign
 } from 'lucide-react'
 import { useApp } from '../../context/AppContext.jsx'
 
@@ -11,6 +11,7 @@ const items = [
   { to: '/pos', icon: ShoppingCart, key: 'pos' },
   { to: '/inventory', icon: Package, key: 'inventory' },
   { to: '/sales', icon: Receipt, key: 'sales' },
+  { to: '/shift', icon: DollarSign, key: 'shift' },
   { to: '/customers', icon: Users, key: 'customers' },
   { to: '/employees', icon: UserCog, key: 'employees', locked: true },
   { to: '/suppliers', icon: Truck, key: 'suppliers' },

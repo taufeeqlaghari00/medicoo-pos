@@ -10,6 +10,7 @@ import Suppliers from './pages/Suppliers.jsx'
 import Reports from './pages/Reports.jsx'
 import SettingsPage from './pages/Settings.jsx'
 import Employees from './pages/Employees.jsx'
+import ShiftClose from './pages/ShiftClose.jsx'
 import Privacy from './pages/Privacy.jsx'
 import Terms from './pages/Terms.jsx'
 import { useApp } from './context/AppContext.jsx'
@@ -28,6 +29,7 @@ export default function App() {
         <Route path="/sales" element={<Sales />} />
         <Route path="/customers" element={<Customers />} />
         <Route path="/employees" element={<Employees />} />
+        <Route path="/shift" element={<ShiftClose />} />
         <Route path="/suppliers" element={<Suppliers />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />

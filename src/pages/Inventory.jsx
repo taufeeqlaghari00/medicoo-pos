@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { db } from '../db/database.js'
 import { useApp } from '../context/AppContext.jsx'
 import { formatPKR, formatDate, daysUntil } from '../utils/format.js'
-import { Plus, Search, Edit2, Trash2, AlertTriangle, X, Package } from 'lucide-react'
+import { Plus, Search, Edit2, Trash2, AlertTriangle, X, Package, Download, Upload, FileSpreadsheet } from 'lucide-react'
+import { exportInventoryToExcel, importInventoryFromExcel, downloadTemplate } from '../utils/excel.js'
 
 const CATEGORIES = ['Tablets', 'Capsules', 'Syrups', 'Injections', 'Creams', 'Drops', 'Surgical Items', 'OTC']
 
@@ -47,9 +48,30 @@ export default function Inventory() {
 
   return (
     <div className="space-y-5">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-3">
         <h2 className="text-2xl font-extrabold text-slate-800">{t('inventory.title')}</h2>
-        <button onClick={openAdd} className="btn-primary"><Plus size={18}/> {t('inventory.addMedicine')}</button>
+        <div className="flex gap-2 flex-wrap">
+          <button onClick={downloadTemplate} className="btn-ghost text-xs" title="Download Excel template">
+            <FileSpreadsheet size={15}/> Template
+          </button>
+          <button onClick={() => exportInventoryToExcel(currentBranch)} className="btn-ghost text-xs">
+            <Download size={15}/> Export
+          </button>
+          <label className="btn-ghost text-xs cursor-pointer">
+            <Upload size={15}/> Import
+            <input type="file" accept=".xlsx,.xls" className="hidden"
+              onChange={async (e) => {
+                const f = e.target.files?.[0]
+                if (!f) return
+                try {
+                  const n = await importInventoryFromExcel(f, currentBranch)
+                  alert(`Imported ${n} medicines ✓`)
+                } catch (err) { alert('Import failed: ' + err.message) }
+                e.target.value = ''
+              }}/>
+          </label>
+          <button onClick={openAdd} className="btn-primary"><Plus size={18}/> {t('inventory.addMedicine')}</button>
+        </div>
       </div>
 
       <div className="card p-4">
